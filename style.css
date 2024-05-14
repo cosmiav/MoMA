@@ -16,3 +16,7 @@ navbar {
   background-color: #333; /* Ganti dengan warna yang diinginkan saat discroll */
   transition: background-color 0.3s ease-in-out; /* Animasi transisi */
 }
+
+#item{
+  background-color: black;
+}
