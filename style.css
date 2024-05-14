@@ -1,0 +1,18 @@
+.jumbotron {
+  background-image: url(./assets/bg.jpg);
+  background-size: cover;
+  height: 80vh;
+}
+
+.display-4 {
+  font-family: "Rozha One", serif;
+}
+
+nav img {
+  filter: invert(1);
+}
+
+navbar {
+  background-color: #333; /* Ganti dengan warna yang diinginkan saat discroll */
+  transition: background-color 0.3s ease-in-out; /* Animasi transisi */
+}
