@@ -1,3 +1,6 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
 .jumbotron {
   background-image: url(./assets/bg.jpg);
   background-size: cover;
