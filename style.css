@@ -1,5 +1,10 @@
+@font-face {
+  font-family: circular-book;
+  src: url(./assets/fonts/circular-book.ttf);
+}
+
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: "circular-book";
 }
 .jumbotron {
   background-image: url(./assets/bg.jpg);
@@ -7,10 +12,20 @@
   height: 80vh;
 }
 
-.display-4 {
-  font-family: "Rozha One", serif;
+h1 {
+  font-weight: bold;
 }
 
-nav img {
-  filter: invert(1);
+footer h5,
+footer p {
+  color: white;
+}
+
+.btn,
+#newsletter1 {
+  background-color: transparent;
+}
+
+.btn:hover {
+  background-color: rgba(36, 36, 36, 0.803);
 }
