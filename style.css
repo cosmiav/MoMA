@@ -29,3 +29,14 @@ footer p {
 .btn:hover {
   background-color: rgba(36, 36, 36, 0.803);
 }
+
+.card-img-top {
+  width: 20rem;
+}
+
+.events .btn {
+  background-color: transparent;
+}
+.events .btn:hover {
+  background-color: rgba(241, 241, 241, 0.803);
+}
