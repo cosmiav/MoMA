@@ -1,0 +1,59 @@
+<template>
+  <h2 class="fw-bold pb-3">Sculpture</h2>
+  <div class="row">
+    <div
+      class="col-sm-6 col-md-4 col-lg-3"
+      v-for="(collection, index) in sculptureCollections"
+      :key="collection.id"
+    >
+      <router-link
+        :to="{
+          name: 'CollectionPage',
+          params: { id: collection.id },
+        }"
+      >
+        <div class="card border-0 rounded-0">
+          <img
+            :src="getImage(collection.image)"
+            class="card-img-top rounded-0"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{ collection.title }}</h5>
+            <small>
+              <span
+                >{{ getArtistName(collection.artist_id) }},
+                {{ collection.date }}</span
+              >
+              <br />
+            </small>
+          </div>
+        </div>
+      </router-link>
+    </div>
+  </div>
+</template>
+
+<script>
+import { useDB } from "@/dbComposition";
+
+export default {
+  setup() {
+    const { formatDateMonth, sculptureCollections, getImage, getArtistName } =
+      useDB();
+
+    return {
+      formatDateMonth,
+      sculptureCollections,
+      getImage,
+      getArtistName,
+    };
+  },
+};
+</script>
+
+<style scoped>
+a:link {
+  text-decoration: none;
+}
+</style>
