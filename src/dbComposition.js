@@ -6,9 +6,12 @@ export function useDB() {
   const artists = ref([]);
   const exhibition = ref([]);
 
+  const baseUrl =
+    "https://moma-5ad3e32pc-sheptiyan-agung-rizmawans-projects.vercel.app/"; // Ganti dengan URL Vercel Anda
+
   const fetchCollection = () => {
     axios
-      .get("http://localhost:5000/collection")
+      .get(`${baseUrl}/collection`)
       .then((response) => {
         collection.value = response.data;
       })
@@ -19,7 +22,7 @@ export function useDB() {
 
   const fetchArtists = () => {
     axios
-      .get("http://localhost:5000/artists")
+      .get(`${baseUrl}/artists`)
       .then((response) => {
         artists.value = response.data;
       })
@@ -30,7 +33,7 @@ export function useDB() {
 
   const fetchExhibition = () => {
     axios
-      .get("http://localhost:5000/exhibition")
+      .get(`${baseUrl}/exhibition`)
       .then((response) => {
         exhibition.value = response.data;
       })
@@ -69,7 +72,7 @@ export function useDB() {
   };
 
   const getImage = (imagePath) => {
-    return `http://localhost:5000/${imagePath}`;
+    return `${baseUrl}/${imagePath}`;
   };
 
   const formatDateYear = (dateString) => {
