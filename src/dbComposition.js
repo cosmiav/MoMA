@@ -6,8 +6,7 @@ export function useDB() {
   const artists = ref([]);
   const exhibition = ref([]);
 
-  const baseUrl =
-    "https://moma-5ad3e32pc-sheptiyan-agung-rizmawans-projects.vercel.app"; // Ganti dengan URL Vercel Anda
+  const baseUrl = "https://moma-five.vercel.app"; // Ganti dengan URL Vercel Anda
 
   const fetchCollection = () => {
     axios
