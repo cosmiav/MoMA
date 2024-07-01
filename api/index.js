@@ -21,7 +21,7 @@ const db = mysql.createConnection({
   password: "JxrLnug8rI6SyvkEUXSi",
   database: "b7bndktatgn0dp85iki8",
 });
-
+JxrLnug8rI6SyvkEUXSi
 db.connect((err) => {
   if (err) throw err;
   console.log("MySQL Connected...");
