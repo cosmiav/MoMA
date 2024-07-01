@@ -6,7 +6,7 @@ const schedule = require("node-schedule");
 const app = express();
 app.use(cors());
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 //const db = mysql.createConnection({
 //  host: "127.0.0.1",
@@ -21,7 +21,7 @@ const db = mysql.createConnection({
   password: "JxrLnug8rI6SyvkEUXSi",
   database: "b7bndktatgn0dp85iki8",
 });
-JxrLnug8rI6SyvkEUXSi
+JxrLnug8rI6SyvkEUXSi;
 db.connect((err) => {
   if (err) throw err;
   console.log("MySQL Connected...");
