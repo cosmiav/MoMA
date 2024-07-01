@@ -1,13 +1,15 @@
 <template>
-  <slideshow />
-  <div class="container-fluid px-md-5 my-md-5 my-3">
-    <exhibitionDisplay />
-    <hr class="my-3 my-md-5" />
-    <onviewDisplay />
-    <hr class="my-3 my-md-5" />
-    <artists />
-  </div>
-  <collection />
+  <Suspense>
+    <slideshow />
+    <div class="container-fluid px-md-5 my-md-5 my-3">
+      <exhibitionDisplay />
+      <hr class="my-3 my-md-5" />
+      <onviewDisplay />
+      <hr class="my-3 my-md-5" />
+      <artists />
+    </div>
+    <collection
+  /></Suspense>
 </template>
 
 <script setup>
