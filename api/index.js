@@ -16,10 +16,10 @@ app.use(express.static(__dirname + "/public"));
 //});
 
 const db = mysql.createConnection({
-  host: "b7bndktatgn0dp85iki8-mysql.services.clever-cloud.com",
-  user: "uqw4qapnuzwiwuq2",
-  password: "JxrLnug8rI6SyvkEUXSi",
-  database: "b7bndktatgn0dp85iki8",
+  host: "sql305.infinityfree.com",
+  user: "if0_36803628",
+  password: "ZmpcTdTyNKTy",
+  database: "if0_36803628_moma_gallery",
 });
 
 db.connect((err) => {
