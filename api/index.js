@@ -1,5 +1,5 @@
 const express = require("express");
-const mysql = require("mysql2");
+const { Pool } = require("pg");
 const cors = require("cors");
 const schedule = require("node-schedule");
 
@@ -8,42 +8,35 @@ app.use(cors());
 
 app.use(express.static(__dirname + "/public"));
 
-//const db = mysql.createConnection({
-//  host: "127.0.0.1",
-//  user: "root",
-//  password: "",
-//  database: "moma_gallery",
-//});
-
-const db = mysql.createConnection({
-  host: "sql305.infinityfree.com",
-  user: "if0_36803628",
-  password: "ZmpcTdTyNKTy",
-  database: "if0_36803628_moma_gallery",
+const pool = new Pool({
+  user: "postgres.rcwueuhajueetwodahxv",
+  host: "aws-0-ap-southeast-1.pooler.supabase.com",
+  database: "postgres",
+  password: "JxrLnug8rI6SyvkEUXSi",
+  port: 6543,
 });
 
-db.connect((err) => {
-  if (err) throw err;
-  console.log("MySQL Connected...");
+pool.connect((err, client, release) => {
+  if (err) {
+    return console.error("Error acquiring client", err.stack);
+  }
+  console.log("PostgreSQL Connected...");
+  release();
 });
 
 // Function to update exhibition status
 const updateExhibitionStatus = () => {
   const currentDate = new Date().toISOString().split("T")[0]; // Get current date in 'YYYY-MM-DD' format
 
-  const updateCurrentExhibitions = `UPDATE exhibition SET status = 'current' WHERE start_date <= ? AND end_date >= ?`;
-  const updatePastExhibitions = `UPDATE exhibition SET status = 'past' WHERE end_date < ?`;
+  const updateCurrentExhibitions = `UPDATE exhibition SET status = 'current' WHERE start_date <= $1 AND end_date >= $1`;
+  const updatePastExhibitions = `UPDATE exhibition SET status = 'past' WHERE end_date < $1`;
 
-  db.query(
-    updateCurrentExhibitions,
-    [currentDate, currentDate],
-    (err, result) => {
-      if (err) throw err;
-      console.log("Current exhibitions updated");
-    }
-  );
+  pool.query(updateCurrentExhibitions, [currentDate], (err, result) => {
+    if (err) throw err;
+    console.log("Current exhibitions updated");
+  });
 
-  db.query(updatePastExhibitions, [currentDate], (err, result) => {
+  pool.query(updatePastExhibitions, [currentDate], (err, result) => {
     if (err) throw err;
     console.log("Past exhibitions updated");
   });
@@ -56,25 +49,25 @@ schedule.scheduleJob("0 0 * * *", () => {
 
 app.get("/exhibition", (req, res) => {
   const sql = "SELECT * FROM exhibition";
-  db.query(sql, (err, results) => {
+  pool.query(sql, (err, results) => {
     if (err) throw err;
-    res.json(results);
+    res.json(results.rows);
   });
 });
 
 app.get("/collection", (req, res) => {
   const sql = "SELECT * FROM collection";
-  db.query(sql, (err, results) => {
+  pool.query(sql, (err, results) => {
     if (err) throw err;
-    res.json(results);
+    res.json(results.rows);
   });
 });
 
 app.get("/artists", (req, res) => {
   const sql = "SELECT * FROM artists";
-  db.query(sql, (err, results) => {
+  pool.query(sql, (err, results) => {
     if (err) throw err;
-    res.json(results);
+    res.json(results.rows);
   });
 });
 

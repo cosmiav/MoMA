@@ -6,7 +6,7 @@ export function useDB() {
   const artists = ref([]);
   const exhibition = ref([]);
 
-  const baseUrl = "https://moma-five.vercel.app";
+  const baseUrl = "http://localhost:5000";
 
   const fetchCollection = () => {
     axios
