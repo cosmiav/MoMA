@@ -8,8 +8,8 @@
       <hr class="my-3 my-md-5" />
       <artists />
     </div>
-    <collection
-  /></Suspense>
+    <collection />
+  </Suspense>
 </template>
 
 <script setup>
