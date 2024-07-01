@@ -9,10 +9,10 @@ app.use(cors());
 app.use(express.static("public"));
 
 const db = mysql.createConnection({
-  host: "b7bndktatgn0dp85iki8-mysql.services.clever-cloud.com",
-  user: "uqw4qapnuzwiwuq2",
-  password: "JxrLnug8rI6SyvkEUXSi",
-  database: "b7bndktatgn0dp85iki8",
+  host: "127.0.0.1",
+  user: "root",
+  password: "",
+  database: "moma_gallery",
 });
 
 db.connect((err) => {

@@ -1,5 +1,17 @@
 <template>
-  <nav class="navbar bg-white fixed-top ps-md-4 pe-md-4" data-bs-theme="light">
+  <nav
+    :class="[
+      'navbar',
+      'fixed-top',
+      'ps-md-4',
+      'pe-md-4',
+      {
+        'navbar-transparent': !isScrolled,
+        'bg-white shadow-navbar': isScrolled,
+      },
+    ]"
+    :data-bs-theme="isHomePage && !isScrolled ? 'dark' : 'light'"
+  >
     <div class="container-fluid">
       <button
         class="toggler"
@@ -11,8 +23,16 @@
       >
         <Menu class="lucide" />
       </button>
-      <router-link to="/" class="navbar-brand mx-auto nav-link">
-        <span class="fs-2 fw-bold text-black p-1">MoMA.</span>
+      <router-link
+        to="/"
+        :class="[
+          'navbar-brand',
+          'mx-auto',
+          'nav-link',
+          { 'small-brand': isScrolled },
+        ]"
+      >
+        <span class="fw-bold">M O M A</span>
       </router-link>
       <button
         class="toggler"
@@ -26,7 +46,7 @@
       </button>
 
       <div
-        class="offcanvas offcanvas-start bg-black text-bg-dark p-4"
+        class="offcanvas offcanvas-start bg-black border-0 text-bg-dark p-4"
         data-bs-theme="dark"
         tabindex="-1"
         id="offcanvasNavbar"
@@ -82,19 +102,62 @@
             placeholder="Search"
             aria-label="Search"
           />
-          <button class="" type="submit">
+          <button class="lucide-dark" type="submit">
             <ChevronRight />
           </button>
         </form>
       </div>
     </div>
   </nav>
-  <br />
-  <br />
 </template>
 
 <script setup>
 import { Search, Menu, X, ChevronRight } from "lucide-vue-next";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useRoute } from "vue-router";
+
+const isScrolled = ref(false);
+const route = useRoute();
+
+const isHomePage = computed(() => route.path === "/");
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 0;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
-<style scoped></style>
+<style scoped>
+.navbar {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-transparent {
+  background-color: transparent;
+}
+
+.shadow-navbar {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.navbar-brand {
+  font-size: 32px;
+  transition: font-size 0.3s ease;
+}
+
+.small-brand {
+  font-size: 24px;
+}
+
+/* Tambahkan style hover khusus untuk lucide saat tema gelap */
+[data-bs-theme="dark"] .lucide:hover {
+  color: #d9d9d9; /* Ganti dengan warna yang Anda inginkan */
+}
+</style>

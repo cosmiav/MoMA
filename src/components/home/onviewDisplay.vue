@@ -1,30 +1,29 @@
 <template>
-  <div class="container my-md-5" v-if="latestExhibition">
-    <div class="row pb-3 justify-content-between">
-      <div class="col-md-6 align-self-center">
-        <p class="my-3">On View</p>
-        <h3>{{ latestExhibition.title }}</h3>
-        <h5>
-          Through
-          {{ formatDateMonth(latestExhibition.end_date) }}
-        </h5>
-        <p>{{ latestExhibition.location }}</p>
+  <div class="row pb-3 justify-content-between" v-if="exhibition">
+    <div class="col-md-6 align-self-center order-md-2">
+      <img
+        :src="getImage(exhibition.image)"
+        class="img-fluid aspect-ratio-image rounded-0 border-0"
+      />
+    </div>
+    <div class="col-md-5 align-self-center order-md-1">
+      <p class="my-3">Upcoming Exhibition</p>
+      <h2>{{ getArtistName(exhibition.artist_id) }}</h2>
+      <h5 class="">{{ exhibition.title }}</h5>
+      <p class="my-3">
+        {{ formatDateMonth(exhibition.start_date) }} -
+        {{ formatDateYear(exhibition.end_date) }}
         <br />
-        <router-link
-          :to="{
-            name: 'ExhibitionDetail',
-            params: { id: latestExhibition.id },
-          }"
-        >
-          <p>Learn More</p>
-        </router-link>
-      </div>
-      <div class="col-md-5 align-self-center">
-        <img
-          :src="getImage(latestExhibition.image)"
-          class="img-fluid aspect-ratio-image rounded-0 border-0"
-        />
-      </div>
+        {{ exhibition.location }}
+      </p>
+      <router-link
+        :to="{
+          name: 'ExhibitionDetail',
+          params: { id: exhibition.id },
+        }"
+      >
+        <p>Learn More</p>
+      </router-link>
     </div>
   </div>
 </template>
@@ -35,8 +34,14 @@ import { useDB } from "@/dbComposition";
 
 export default {
   setup() {
-    const { currentExhibitions, formatDateMonth, getImage } = useDB();
-    const latestExhibition = computed(() => {
+    const {
+      currentExhibitions,
+      formatDateMonth,
+      formatDateYear,
+      getArtistName,
+      getImage,
+    } = useDB();
+    const exhibition = computed(() => {
       if (!currentExhibitions.value || currentExhibitions.value.length === 0) {
         return null;
       }
@@ -48,8 +53,10 @@ export default {
     });
 
     return {
-      latestExhibition,
+      exhibition,
       formatDateMonth,
+      formatDateYear,
+      getArtistName,
       getImage,
     };
   },

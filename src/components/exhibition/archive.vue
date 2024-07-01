@@ -5,7 +5,7 @@
       class="d-flex align-items-center row active-link"
     >
       <div class="col-5 col-md-2">
-        <img :src="exhibit.image" alt="" class="img-fluid" />
+        <img :src="getImage(exhibit.image)" alt="" class="img-fluid" />
       </div>
       <div class="col-7 col-md-10 d-flex flex-column flex-md-row">
         <!--ARTIST-->
@@ -50,12 +50,14 @@ import { ArrowRight } from "lucide-vue-next";
 export default {
   components: { ArrowRight },
   setup() {
-    const { pastExhibitions, formatDateMonth, getArtistName } = useDB();
+    const { pastExhibitions, formatDateMonth, getArtistName, getImage } =
+      useDB();
 
     return {
       pastExhibitions,
       formatDateMonth,
       getArtistName,
+      getImage,
     };
   },
 };

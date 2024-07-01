@@ -6,7 +6,7 @@ export function useDB() {
   const artists = ref([]);
   const exhibition = ref([]);
 
-  const baseUrl = "http://localhost:5000";
+  const baseUrl = "https://moma-five.vercel.app";
 
   const fetchCollection = () => {
     axios
@@ -76,7 +76,8 @@ export function useDB() {
 
   const formatDateYear = (dateString) => {
     const date = new Date(dateString);
-    return date.getFullYear();
+    const options = { day: "numeric", month: "long", year: "numeric" };
+    return new Intl.DateTimeFormat("en-US", options).format(date);
   };
 
   const formatDateMonth = (dateString) => {
