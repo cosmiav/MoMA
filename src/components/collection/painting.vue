@@ -21,11 +21,8 @@
           <div class="card-body">
             <h5 class="card-title fw-bold">{{ collection.title }}</h5>
             <small>
-              <span
-                >{{ getArtistName(collection.artist_id) }},
-                {{ collection.date }}</span
-              >
-              <br />
+              {{ getArtistName(collection.artist_id) }},
+              {{ collection.date }}
             </small>
           </div>
         </div>

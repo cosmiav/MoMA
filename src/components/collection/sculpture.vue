@@ -25,7 +25,6 @@
                 >{{ getArtistName(collection.artist_id) }},
                 {{ collection.date }}</span
               >
-              <br />
             </small>
           </div>
         </div>

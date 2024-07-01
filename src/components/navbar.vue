@@ -32,7 +32,7 @@
           { 'small-brand': isScrolled },
         ]"
       >
-        <span class="fw-bold">M O M A</span>
+        <span class="fw-bold">moma.</span>
       </router-link>
       <button
         class="toggler"
@@ -137,6 +137,8 @@ onUnmounted(() => {
 <style scoped>
 .navbar {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .navbar-transparent {
@@ -148,7 +150,7 @@ onUnmounted(() => {
 }
 
 .navbar-brand {
-  font-size: 32px;
+  font-size: 27px;
   transition: font-size 0.3s ease;
 }
 
