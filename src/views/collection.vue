@@ -1,7 +1,9 @@
 <template>
-  <div class="container-fluid my-3 px-md-5 my-md-5">
-    <div class="mt-5 py-5">
-      <h1 class="display-3 fw-bold text-black text-center">Collection</h1>
+  <div class="container-fluid pt-5 px-md-5">
+    <div class="d-flex justify-content-center">
+      <div class="py-5 my-md-5">
+        <h1 class="display-2 fw-bold text-black">Collection</h1>
+      </div>
     </div>
 
     <painting />
@@ -18,3 +20,8 @@ import photography from "@/components/collection/photography.vue";
 import sculpture from "@/components/collection/sculpture.vue";
 import painting from "@/components/collection/painting.vue";
 </script>
+
+<style scoped>
+.wrapper {
+}
+</style>
