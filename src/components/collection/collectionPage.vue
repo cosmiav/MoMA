@@ -1,27 +1,27 @@
 <template>
   <div>
     <div v-if="collection">
-      <div class="container my-md-5">
-        <div class="row pt-3 justify-content-between">
+      <div class="container pt-5">
+        <div class="row my-3 my-md-5 justify-content-between">
           <div class="col-md-6 order-md-2">
             <img
               :src="getImage(collection.image)"
               alt="Exhibition Image"
-              class="img-fluid my-3"
+              class="img-fluid"
             />
           </div>
-          <div class="col-md-5 align-self-center order-md-1">
-            <h2 class="fw-bold fs-1">
+          <div class="col-md-6 align-self-center order-md-1 mt-3 mt-md-0">
+            <h2 class="display-6 fw-bold m-0">
               {{ collection.title }}
             </h2>
-            <h4 class="">
+            <h7>
               {{ getArtistName(collection.artist_id) }}, {{ collection.date }}
-            </h4>
+            </h7>
           </div>
         </div>
       </div>
 
-      <hr class="my-5" />
+      <hr class="py-2" />
 
       <div class="container my-md-5">
         <div class="row justify-content-between">
@@ -100,5 +100,6 @@ export default {
 h6 {
   text-transform: uppercase;
   font-weight: bold;
+  margin: 0;
 }
 </style>

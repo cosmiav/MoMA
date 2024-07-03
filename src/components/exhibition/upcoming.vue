@@ -9,7 +9,7 @@
       >
         <router-link
           :to="{
-            name: 'ExhibitionDetail',
+            name: 'ExhibitionPage',
             params: { id: exhibition.id },
           }"
         >
@@ -20,12 +20,10 @@
               alt="..."
             />
             <div class="card-body">
-              <h5 class="card-title fw-bold">{{ exhibition.title }}</h5>
-              <small>
-                <span
-                  >Through {{ formatDateMonth(exhibition.start_date) }}</span
-                >
-                <br />
+              <small> {{ getArtistName(exhibition.artist_id) }}</small>
+              <h5 class="card-title fw-bold m-0">{{ exhibition.title }}</h5>
+              <small class="m-0">
+                Initiated on {{ formatDateMonth(exhibition.start_date) }}
               </small>
             </div>
           </div>
@@ -46,12 +44,20 @@ export default {
     ArrowLeft,
   },
   setup() {
-    const { formatDateMonth, upcomingExhibitions, getImage } = useDB();
+    const {
+      formatDateMonth,
+      formatDateYear,
+      upcomingExhibitions,
+      getImage,
+      getArtistName,
+    } = useDB();
 
     return {
       formatDateMonth,
+      formatDateYear,
       upcomingExhibitions,
       getImage,
+      getArtistName,
     };
   },
 };

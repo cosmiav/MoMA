@@ -1,16 +1,16 @@
 <template>
   <div>
     <div v-if="exhibition">
-      <div class="container my-md-5">
-        <div class="row pt-3 justify-content-between">
+      <div class="container pt-5">
+        <div class="row my-3 my-md-5 justify-content-between">
           <div class="col-md-6 order-md-2">
             <img
               :src="getImage(exhibition.image)"
               alt="Exhibition Image"
-              class="img-fluid my-3"
+              class="img-fluid"
             />
           </div>
-          <div class="col-md-5 align-self-center order-md-1">
+          <div class="col-md-6 align-self-center order-md-1">
             <p style="text-transform: capitalize">
               {{ exhibition.status }} Exhibition
             </p>

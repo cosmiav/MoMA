@@ -1,7 +1,7 @@
 <template>
   <div v-for="(exhibit, index) in pastExhibitions" :key="index" class="mb-4">
     <router-link
-      :to="{ name: 'ExhibitionDetail', params: { id: exhibit.id } }"
+      :to="{ name: 'ExhibitionPage', params: { id: exhibit.id } }"
       class="d-flex align-items-center row active-link"
     >
       <div class="col-5 col-md-2">

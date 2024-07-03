@@ -19,7 +19,7 @@
             alt="..."
           />
           <div class="card-body">
-            <h5 class="card-title fw-bold">{{ collection.title }}</h5>
+            <h5 class="card-title fw-bold m-0">{{ collection.title }}</h5>
             <small>
               <span
                 >{{ getArtistName(collection.artist_id) }},

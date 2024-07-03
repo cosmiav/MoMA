@@ -1,13 +1,12 @@
 <template>
   <slideshow />
-  <div class="container-fluid px-md-5 my-md-5 my-3">
+  <div class="container-fluid px-md-5 pt-3">
     <exhibitionDisplay />
-    <hr class="my-3 my-md-5" />
+    <hr class="py-1 py-md-0" />
     <onviewDisplay />
-    <hr class="my-3 my-md-5" />
+    <hr class="py-1 py-md-0" />
     <artists />
   </div>
-  <collection />
 </template>
 
 <script setup>

@@ -26,23 +26,32 @@
         </div>
         <div class="overlay">
           <div
-            class="carousel-caption d-flex flex-column h-100 align-items-center justify-content-center"
+            class="carousel-caption d-flex flex-column h-100 align-items-md-start align-items-center justify-content-center"
           >
-            <small class="pb-2"
+            <small class="mb-3"
               >{{ item.start_date }} - {{ item.end_date }}
             </small>
             <!-- Artist -->
-            <h1 class="display-3 fw-bold text-uppercase my-2">
+            <h1 class="display-4 d-none d-md-block fw-bold">
               {{ item.artist }}
             </h1>
-            <h4 class="fw-normal">{{ item.title }}</h4>
+            <h2 class="fw-bold d-md-none">
+              {{ item.artist }}
+            </h2>
+            <!-- Title -->
+            <h1 class="display-4 d-none d-md-block fw-bold mb-5">
+              {{ item.title }}
+            </h1>
+            <small class="mb-3 d-md-none">
+              {{ item.title }}
+            </small>
             <br />
             <router-link
               :to="{
-                name: 'ExhibitionDetail',
+                name: 'ExhibitionPage',
                 params: { id: item.id },
               }"
-              class="btn btn-outline-light px-4 py-2 rounded-0 mt-4"
+              class="btn btn-light px-4 py-2 rounded-0"
             >
               Learn More
             </router-link>
@@ -95,7 +104,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .image-wrapper {
   height: 100vh;
 }
@@ -112,6 +121,6 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
 }
 </style>

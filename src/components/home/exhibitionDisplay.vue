@@ -1,28 +1,30 @@
 <template>
-  <div class="row justify-content-between" v-if="exhibition">
+  <div class="row justify-content-between my-md-5" v-if="exhibition">
     <div class="col-md-6 col-lg-5 align-self-center">
       <img
         :src="getImage(exhibition.image)"
         class="img-fluid aspect-ratio-image rounded-0 border-0"
       />
     </div>
-    <div class="col-md-5 col-lg-6 align-self-center">
-      <p class="my-3">Upcoming Exhibition</p>
-      <h2>{{ getArtistName(exhibition.artist_id) }}</h2>
-      <h5 class="">{{ exhibition.title }}</h5>
-      <p class="my-3">
+    <div class="col-md-6 col-lg-6 align-self-center">
+      <h3 class="fw-bold m-0 mt-2">
+        {{ getArtistName(exhibition.artist_id) }}
+      </h3>
+      <h3 class="fw-bold m-0">{{ exhibition.title }}</h3>
+
+      <small class="text-body-secondary">
         {{ formatDateMonth(exhibition.start_date) }} -
         {{ formatDateYear(exhibition.end_date) }}
-        <br />
-        {{ exhibition.location }}
-      </p>
+      </small>
+      <br />
       <router-link
         :to="{
-          name: 'ExhibitionDetail',
+          name: 'ExhibitionPage',
           params: { id: exhibition.id },
         }"
+        class="mt-3 d-block"
       >
-        <p>Learn More</p>
+        Learn More
       </router-link>
     </div>
   </div>
@@ -77,6 +79,7 @@ export default {
 <style scoped>
 a:link {
   color: #111111;
+  text-decoration: underline;
 }
 
 a:visited {

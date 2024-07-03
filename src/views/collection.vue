@@ -7,10 +7,9 @@
     </div>
 
     <painting />
-    <hr class="my-md-5" />
+    <hr class="py-2" />
     <sculpture />
-    <hr class="my-md-5" />
-
+    <hr class="py-2" />
     <photography />
   </div>
 </template>
@@ -21,7 +20,4 @@ import sculpture from "@/components/collection/sculpture.vue";
 import painting from "@/components/collection/painting.vue";
 </script>
 
-<style scoped>
-.wrapper {
-}
-</style>
+<style scoped></style>

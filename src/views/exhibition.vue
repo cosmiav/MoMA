@@ -1,17 +1,19 @@
 <template>
-  <div class="container-fluid px-md-5 my-md-5">
-    <div class="py-md-5 text-center">
-      <h1 class="display-1 fw-bold p-4 p-md-1 text-black">Exhibition</h1>
+  <div class="container-fluid pt-5 px-md-5">
+    <div class="d-flex justify-content-center">
+      <div class="py-5 my-md-5">
+        <h1 class="display-2 fw-bold text-black">Exhibition</h1>
+      </div>
     </div>
 
-    <div class="justify-content-start">
+    <div class="d-flex justify-content-center justify-content-md-start">
       <button @click="showOnViewUpcoming">On View & Upcoming</button> /
       <button @click="showArchiveView">Archive</button>
     </div>
-    <hr class="my-md-4" />
+    <hr class="py-2" />
     <archive v-if="showArchive" />
     <onView v-if="!showArchive" />
-    <hr class="my-5" v-if="!showArchive" />
+    <hr class="py-2" v-if="!showArchive" />
     <upcoming v-if="!showArchive" />
   </div>
 </template>
