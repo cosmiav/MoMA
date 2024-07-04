@@ -31,15 +31,15 @@
                 <h6>Details</h6>
                 <p>
                   {{ artist.nationality }} <br />
-                  b. {{ artist.birthdate }} <br />
-                  d. {{ artist.deathdate }}
+                  b. {{ formatDateYear(artist.birthdate) }} <br />
+                  d. {{ formatDateYear(artist.deathdate) }}
                 </p>
               </div>
               <div class="col-12">
                 <h6>Connect</h6>
                 <p>
-                  <a href="https://www.instagram.com/themuseumofmodernart/"
-                    >@themuseumofmodernart</a
+                  <a :href="artist.social">
+                    {{ formatSocial(artist.social) }}</a
                   >
                 </p>
               </div>
@@ -61,25 +61,33 @@
 import { ref, onMounted, watch } from "vue";
 import { useDB } from "@/dbComposition";
 import { useRoute } from "vue-router";
+import { Globe } from "lucide-vue-next";
 
 export default {
   setup() {
     const route = useRoute();
-    const { artists, formatDate, getImage } = useDB();
+    const { artists, formatDateYear, getImage } = useDB();
     const artist = ref(null);
-
     const fetchArtist = (artistId) => {
       const foundArtist = artists.value.find(
         (a) => a.id.toString() === artistId.toString()
       );
       artist.value = foundArtist;
     };
-
+    const formatSocial = (url) => {
+      if (!url) return "";
+      // Menghapus protokol
+      let formattedUrl = url.replace(/^https?:\/\//, "");
+      // Menghapus trailing slash jika tidak ada lanjutannya
+      if (formattedUrl.endsWith("/")) {
+        formattedUrl = formattedUrl.slice(0, -1);
+      }
+      return formattedUrl;
+    };
     onMounted(() => {
       const artistId = route.params.id;
       fetchArtist(artistId);
     });
-
     watch(
       () => artists.value,
       () => {
@@ -87,13 +95,14 @@ export default {
         fetchArtist(artistId);
       }
     );
-
     return {
       artist,
-      formatDate,
+      formatDateYear,
+      formatSocial,
       getImage,
     };
   },
+  components: { Globe },
 };
 </script>
 
@@ -105,6 +114,7 @@ h6 {
 
 a:link {
   color: #111111;
+  text-decoration: underline;
 }
 
 a:visited {

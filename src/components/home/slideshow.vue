@@ -51,7 +51,7 @@
                 name: 'ExhibitionPage',
                 params: { id: item.id },
               }"
-              class="btn btn-light px-4 py-2 rounded-0"
+              class="btn btn-outline-light px-4 py-2 rounded-0"
             >
               Learn More
             </router-link>
@@ -106,7 +106,7 @@ export default {
 
 <style scoped>
 .image-wrapper {
-  height: 100vh;
+  height: 100dvh;
 }
 
 .image-wrapper img {

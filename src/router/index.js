@@ -6,7 +6,6 @@ import Collection from "@/views/collection.vue";
 import CollectionPage from "@/components/collection/collectionPage.vue";
 import Exhibition from "@/views/exhibition.vue";
 import Archive from "@/components/exhibition/archive.vue";
-import ArtworkDetail from "../components/artworkDetail/artworkDetail.vue";
 import ExhibitionPage from "@/components/exhibition/exhibitionPage.vue";
 
 const routes = [
@@ -41,12 +40,6 @@ const routes = [
     path: "/exhibition",
     name: "Exhibition",
     component: Exhibition,
-  },
-  {
-    path: "/artwork/:id",
-    name: "ArtworkDetail",
-    component: ArtworkDetail,
-    props: true,
   },
   {
     path: "/exhibition/:id",

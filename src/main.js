@@ -1,6 +1,6 @@
 import "./assets/main.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min";
+import "bootstrap/dist/js/bootstrap.min.js";
 import router from "./router";
 import "./assets/custom.scss";
 import AOS from "aos";
