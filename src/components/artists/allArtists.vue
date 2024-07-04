@@ -3,8 +3,23 @@
     <div class="row">
       <div
         class="col-6 col-sm-4 col-md-3 pb-3"
+        v-for="n in 8"
+        :key="n"
+        v-if="loading"
+      >
+        <div class="card rounded-0 border-0">
+          <div class="card-img-wrapper skeleton"></div>
+          <div class="card-body">
+            <h4 class="card-title fw-bold skeleton-text"></h4>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="col-6 col-sm-4 col-md-3 pb-3"
         v-for="artist in artists"
         :key="artist.id"
+        v-else
       >
         <router-link
           :to="{
@@ -32,8 +47,25 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
+import { ref, onMounted } from "vue";
 
 export default {
+  setup() {
+    const loading = ref(true);
+    const { artists, getImage } = mapState(["artists"]);
+    const fetchArtists = mapActions(["fetchArtists"]);
+
+    onMounted(async () => {
+      await fetchArtists();
+      loading.value = false;
+    });
+
+    return {
+      loading,
+      artists,
+      getImage,
+    };
+  },
   computed: {
     ...mapState(["artists"]),
     ...mapGetters(["getImage"]),
@@ -42,7 +74,9 @@ export default {
     ...mapActions(["fetchArtists"]),
   },
   mounted() {
-    this.fetchArtists();
+    this.fetchArtists().then(() => {
+      this.loading = false;
+    });
   },
 };
 </script>
@@ -52,6 +86,7 @@ export default {
   position: relative;
   width: 100%;
   padding-top: 100%; /* This gives a 1:1 aspect ratio */
+  background-color: #e0e0e0; /* Light grey background for skeleton */
 }
 
 .card-img {
@@ -61,5 +96,28 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Skeleton loader */
+.skeleton {
+  animation: shimmer 1.5s infinite linear;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+}
+
+.skeleton-text {
+  width: 80%;
+  height: 1.2em;
+  margin: 0.5em 0;
+  background-color: #e0e0e0; /* Light grey background for skeleton */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400% 0;
+  }
+  100% {
+    background-position: 400% 0;
+  }
 }
 </style>
