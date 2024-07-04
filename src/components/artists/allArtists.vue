@@ -31,16 +31,18 @@
 </template>
 
 <script>
-import { useDB } from "@/dbComposition";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
-  setup() {
-    const { artists, getImage } = useDB();
-
-    return {
-      artists,
-      getImage,
-    };
+  computed: {
+    ...mapState(["artists"]),
+    ...mapGetters(["getImage"]),
+  },
+  methods: {
+    ...mapActions(["fetchArtists"]),
+  },
+  mounted() {
+    this.fetchArtists();
   },
 };
 </script>
