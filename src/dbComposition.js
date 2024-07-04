@@ -1,4 +1,4 @@
-import { ref, onMounted, computed } from "vue";
+import { ref, onBeforeMount, computed } from "vue";
 import axios from "axios";
 
 export function useDB() {
@@ -10,37 +10,35 @@ export function useDB() {
   //const baseUrl = "https://moma-five.vercel.app/";
 
   const fetchCollection = () => {
-    axios
-      .get(`${baseUrl}/collection`)
-      .then((response) => {
-        collection.value = response.data;
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the artworks:", error);
-      });
+    return axios.get(`${baseUrl}/collection`);
   };
 
   const fetchArtists = () => {
-    axios
-      .get(`${baseUrl}/artists`)
-      .then((response) => {
-        artists.value = response.data;
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the artists:", error);
-      });
+    return axios.get(`${baseUrl}/artists`);
   };
 
   const fetchExhibition = () => {
-    axios
-      .get(`${baseUrl}/exhibition`)
-      .then((response) => {
-        exhibition.value = response.data;
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the exhibition:", error);
-      });
+    return axios.get(`${baseUrl}/exhibition`);
   };
+
+  const loadData = async () => {
+    try {
+      const [collectionResponse, artistsResponse, exhibitionResponse] =
+        await Promise.all([
+          fetchCollection(),
+          fetchArtists(),
+          fetchExhibition(),
+        ]);
+
+      collection.value = collectionResponse.data;
+      artists.value = artistsResponse.data;
+      exhibition.value = exhibitionResponse.data;
+    } catch (error) {
+      console.error("There was an error fetching data:", error);
+    }
+  };
+
+  onBeforeMount(loadData);
 
   const upcomingExhibitions = computed(() => {
     return exhibition.value.filter((item) => item.status === "upcoming");
@@ -86,12 +84,6 @@ export function useDB() {
     const options = { day: "numeric", month: "long" };
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
-
-  onMounted(() => {
-    fetchCollection();
-    fetchArtists();
-    fetchExhibition();
-  });
 
   return {
     collection,
