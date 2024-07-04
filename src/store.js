@@ -1,7 +1,8 @@
 import { createStore } from "vuex";
 import axios from "axios";
 
-const baseUrl = "http://192.168.0.124:5000"; // or "https://moma-five.vercel.app/"
+//const baseUrl = "http://192.168.0.124:5000";
+const baseUrl = "https://moma-five.vercel.app/";
 
 export default createStore({
   state: {
