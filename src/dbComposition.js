@@ -1,4 +1,4 @@
-import { ref, onBeforeMount, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import axios from "axios";
 
 export function useDB() {
@@ -6,39 +6,41 @@ export function useDB() {
   const artists = ref([]);
   const exhibition = ref([]);
 
-  //const baseUrl = "http://192.168.0.124:5000";
-  const baseUrl = "https://moma-five.vercel.app/";
+  const baseUrl = "http://192.168.0.124:5000";
+  //const baseUrl = "https://moma-five.vercel.app/";
 
   const fetchCollection = () => {
-    return axios.get(`${baseUrl}/collection`);
+    axios
+      .get(`${baseUrl}/collection`)
+      .then((response) => {
+        collection.value = response.data;
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the artworks:", error);
+      });
   };
 
   const fetchArtists = () => {
-    return axios.get(`${baseUrl}/artists`);
+    axios
+      .get(`${baseUrl}/artists`)
+      .then((response) => {
+        artists.value = response.data;
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the artists:", error);
+      });
   };
 
   const fetchExhibition = () => {
-    return axios.get(`${baseUrl}/exhibition`);
+    axios
+      .get(`${baseUrl}/exhibition`)
+      .then((response) => {
+        exhibition.value = response.data;
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the exhibition:", error);
+      });
   };
-
-  const loadData = async () => {
-    try {
-      const [collectionResponse, artistsResponse, exhibitionResponse] =
-        await Promise.all([
-          fetchCollection(),
-          fetchArtists(),
-          fetchExhibition(),
-        ]);
-
-      collection.value = collectionResponse.data;
-      artists.value = artistsResponse.data;
-      exhibition.value = exhibitionResponse.data;
-    } catch (error) {
-      console.error("There was an error fetching data:", error);
-    }
-  };
-
-  onBeforeMount(loadData);
 
   const upcomingExhibitions = computed(() => {
     return exhibition.value.filter((item) => item.status === "upcoming");
@@ -84,6 +86,12 @@ export function useDB() {
     const options = { day: "numeric", month: "long" };
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
+
+  onMounted(() => {
+    fetchCollection();
+    fetchArtists();
+    fetchExhibition();
+  });
 
   return {
     collection,
