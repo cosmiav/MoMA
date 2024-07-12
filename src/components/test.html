@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Halaman HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav {
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Selamat Datang di Halaman Web Saya</h1>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<main>
+    <section id="home">
+        <h2>Home</h2>
+        <p>Ini adalah halaman beranda. Anda bisa menambahkan konten di sini.</p>
+    </section>
+
+    <section id="about">
+        <h2>About</h2>
+        <p>Ini adalah halaman tentang. Di sini Anda bisa menjelaskan tentang diri Anda atau situs web Anda.</p>
+        <ul>
+            <li>Poin pertama</li>
+            <li>Poin kedua</li>
+            <li>Poin ketiga</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Anda bisa menghubungi saya melalui form di bawah ini:</p>
+        <form action="#" method="post">
+            <label for="name">Nama:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="message">Pesan:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+            <input type="submit" value="Kirim">
+        </form>
+    </section>
+
+    <section>
+        <h2>Data Table</h2>
+        <table>
+            <tr>
+                <th>Nama</th>
+                <th>Umur</th>
+                <th>Kota</th>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>30</td>
+                <td>Jakarta</td>
+            </tr>
+            <tr>
+                <td>Jane Smith</td>
+                <td>25</td>
+                <td>Bandung</td>
+            </tr>
+            <tr>
+                <td>Jim Brown</td>
+                <td>35</td>
+                <td>Surabaya</td>
+            </tr>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Halaman Web Saya</p>
+</footer>
+
+</body>
+</html>
